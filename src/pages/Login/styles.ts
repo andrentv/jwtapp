@@ -1,12 +1,12 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  background-color: #ededed;
+  background-color: white;
   height: 100%;
   padding: 20px;
-  box-shadow: 2px 2px 2px #ccc;
-  border-radius: 10px;
-  border: 2px solid grey;
+  box-shadow: 0px 0px 0px #ccc;
+  border-radius: 20px;
+  border: 2px solid darkgray;
   margin-top: 20px;
   display: inline-flex;
   align-items: center;

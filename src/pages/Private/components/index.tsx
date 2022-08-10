@@ -1,18 +1,19 @@
-import { useContext } from "react";
-import { AuthContext } from "../../contexts/Auth/AuthContext";
 import { useState, useEffect } from "react";
-import * as C from "../../App.styles";
-import { Item } from "../../types/Item";
-import { Category } from "../../types/Category";
-import { categories } from "./data/categories";
-import { items } from "./data/items";
-import { getCurrentMonth, filterListByMonth } from "./helpers/dateFilter";
-import { TableArea } from "./components/TableArea";
-import { InfoArea } from "./components/InfoArea";
-import { InputArea } from "./components/InputArea";
+import * as C from "../../../App.styles";
+import { Item } from "../../../types/Item";
+//import { Category } from "../../types/Category";
+//import { categories } from "./data/categories";
+import { items } from "../data/items";
+import { getCurrentMonth, filterListByMonth } from "../helpers/dateFilter";
+import { TableArea } from "./TableArea";
+import { InfoArea } from "./InfoArea";
+import { InputArea } from "./InputArea";
+//import { AuthContext } from "../../contexts/Auth/AuthContext";
+import api from "../services/api";
 
 export const Private = () => {
-  const auth = useContext(AuthContext);
+  //const auth = useContext(AuthContext);
+
   const [list, setList] = useState<Item[]>(items);
   const [filteredList, setFilteredList] = useState<Item[]>([]);
   const [currentMonth, setCurrentMonth] = useState(getCurrentMonth());
@@ -21,14 +22,17 @@ export const Private = () => {
 
   useEffect(() => {
     setFilteredList(filterListByMonth(list, currentMonth));
+    //console.log(list)
   }, [list, currentMonth]);
+
+  // if (categories[filteredList[i].category].expense) {
 
   useEffect(() => {
     let incomeCount = 0;
     let expenseCount = 0;
 
     for (let i in filteredList) {
-      if (categories[filteredList[i].category].expense) {
+      if (filteredList[i].status) {
         expenseCount += filteredList[i].value;
       } else {
         incomeCount += filteredList[i].value;
@@ -56,9 +60,7 @@ export const Private = () => {
         income={income}
         expense={expense}
       />
-
       <InputArea onAdd={handleAddItem} />
-
       <TableArea list={filteredList} />
     </C.Body>
   );

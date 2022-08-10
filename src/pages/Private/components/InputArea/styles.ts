@@ -31,6 +31,7 @@ export const Input = styled.input`
     border: 1px solid lightblue;
     border-radius: 5px;
 `;
+/*
 export const Select = styled.select`
     width: 100%;
     height: 30px;
@@ -40,6 +41,7 @@ export const Select = styled.select`
     color: #787171;
     background-color: white;
 `;
+*/
 
 export const Option = styled.option`
     color: #787171; 

@@ -10,9 +10,16 @@ export const Title = styled.div`
 	color: #888;
 	margin-bottom: 5px;	
 `;
-
 export const Info = styled.div<{ color?: string}>`
 	text-align: center;
 	font-weight: bold;
 	color: ${props => props.color ?? '#787171'};
 `;
+
+/*
+export const Info = styled.div<{ color?: string}>`
+	text-align: center;
+	font-weight: bold;
+	color: ${props => props.color ?? '#787171'};
+`;
+*/
