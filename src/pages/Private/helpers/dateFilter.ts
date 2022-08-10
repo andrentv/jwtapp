@@ -9,10 +9,10 @@ export const getCurrentMonth = () => {
 
 export const filterListByMonth = (list: Item[], date: string): Item[] => {
   let newList: Item[] = [];
-  //let [year, month] = date.split("-");
-  let dateSplit = date.split("-");
-  let year = dateSplit[0];
-  let month = dateSplit[1];
+  let [year, month] = date.split("-");
+  // let dateSplit = date.split("-");
+  //let year = dateSplit[0];
+  //let month = dateSplit[1];
 
   for (let i in list) {
     if (

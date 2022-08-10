@@ -3,17 +3,19 @@ import * as C from "../../../App.styles";
 import { Item } from "../../../types/Item";
 //import { Category } from "../../types/Category";
 //import { categories } from "./data/categories";
-import { items } from "../data/items";
+//import { items } from "../data/items";
 import { getCurrentMonth, filterListByMonth } from "../helpers/dateFilter";
 import { TableArea } from "./TableArea";
 import { InfoArea } from "./InfoArea";
 import { InputArea } from "./InputArea";
 //import { AuthContext } from "../../contexts/Auth/AuthContext";
-import api from "../services/api";
+import { api } from "../services/api";
+//import axios from 'axios'
 
 export const Private = () => {
   //const auth = useContext(AuthContext);
 
+  const [items, setItems] = useState<Item[]>([]);
   const [list, setList] = useState<Item[]>(items);
   const [filteredList, setFilteredList] = useState<Item[]>([]);
   const [currentMonth, setCurrentMonth] = useState(getCurrentMonth());
@@ -21,8 +23,23 @@ export const Private = () => {
   const [expense, setExpense] = useState(0);
 
   useEffect(() => {
+    api
+      .get("/bills")
+      .then((res) => {
+        //console.log(res.data);
+        //setItems(res.data);
+        setList(res.data);
+      })
+      .catch((err) => {
+        //console.error(err);
+      });
+  }, []);
+
+  useEffect(() => {
+    setList(items);
+    console.log(list);
+
     setFilteredList(filterListByMonth(list, currentMonth));
-    //console.log(list)
   }, [list, currentMonth]);
 
   // if (categories[filteredList[i].category].expense) {

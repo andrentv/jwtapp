@@ -3,7 +3,8 @@ import { Container, Button, Input, InputLabel, InputTitle } from "./styles";
 import { Item } from "../../../../types/Item";
 //import { categories } from "../../data/categories";
 import { newDateAdjusted } from "../../helpers/dateFilter";
-import api from "../../services/api";
+import { api } from "../../services/api";
+//import axios from 'axios'
 
 type Props = {
   onAdd: (item: Item) => void;
@@ -54,7 +55,7 @@ export const InputArea = ({ onAdd }: Props) => {
       //   });
       // }
       async function onSubmit(e: ChangeEvent<HTMLInputElement>) {
-        const res = await api.post("/bills/", onAdd);
+        api.post("/bills/", onAdd);
         console.log("edit");
       }
 
